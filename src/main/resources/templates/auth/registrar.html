@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/_head :: head('Crear Cuenta — EDUCASH', '/css/auth.css')}"></head>
+  <body>
+    <canvas id="matrix-canvas" class="matrix-canvas" aria-hidden="true"></canvas>
+
+    <main class="auth-main">
+      <section class="auth-layout container" id="authLayout">
+
+        <!-- Mismas tarjetas flotantes del login -->
+        <div class="auth-showcase" aria-hidden="true">
+
+          <article class="float-card balance">
+            <div class="fc-row">
+              <div class="fc-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor"/>
+                  <path d="M12 6v12M8.5 9.5h4a2.5 2.5 0 1 1 0 5h-1.5" stroke="currentColor"/>
+                </svg>
+              </div>
+              <div class="fc-meta">
+                <span class="fc-label">Bienvenido a</span>
+                <span class="fc-value">EDUCASH</span>
+              </div>
+            </div>
+            <div class="fc-foot">Registro</div>
+          </article>
+
+          <article class="float-card savings">
+            <div class="fc-row">
+              <div class="fc-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 16l5-5 3 3 6-6" stroke="currentColor"/>
+                  <path d="M20 8v6h-6" stroke="currentColor"/>
+                </svg>
+              </div>
+              <div class="fc-meta">
+                <span class="fc-label">Únete y comienza</span>
+                <span class="fc-value">a ahorrar</span>
+              </div>
+            </div>
+            <div class="fc-foot">Optimiza tu dinero</div>
+          </article>
+
+          <article class="float-card ai-tip">
+            <div class="fc-row">
+              <div class="fc-badge">AI</div>
+              <div class="fc-meta">
+                <span class="fc-label">Consejo IA</span>
+                <span class="fc-value small">Registra tu cuenta para recibir tips</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Tarjeta de Registro -->
+        <div class="auth-card">
+
+          <a class="auth-logo" href="/" aria-label="Volver al inicio">
+            <div class="neon-square">
+              <span class="neon-symbol">$</span>
+            </div>
+          </a>
+
+          <h1 class="auth-title">Crear Cuenta</h1>
+          <p class="auth-subtitle">Únete a tu asistente financiero</p>
+
+          <form class="reg-form" method="post" action="/registrar" autocomplete="off">
+
+            <label class="auth-label">Nombre</label>
+            <input class="auth-input" name="nombre" required>
+
+            <label class="auth-label">Apellidos</label>
+            <input class="auth-input" name="apellidos" required>
+
+            <label class="auth-label">Correo</label>
+            <input class="auth-input" name="email" type="email" required>
+
+            <label class="auth-label">Contraseña</label>
+            <input class="auth-input" name="password" type="password" required>
+
+            <button class="btn btn-primary w-full" type="submit">
+              Crear Cuenta
+            </button>
+
+          </form>
+
+          <p class="auth-note">
+            ¿Ya tienes cuenta?
+            <a class="auth-link" href="/login">Inicia Sesión</a>
+          </p>
+
+        </div>
+      </section>
+    </main>
+
+    <script src="/js/inicio.js" defer></script>
+    <script src="/js/auth.js" defer></script>
+  </body>
+</html>
