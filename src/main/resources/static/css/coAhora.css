@@ -1,61 +1,50 @@
-/* Fuente futurista */
-body {
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #0d0d0d;
+/* ===== Panel estilo EDUCash (sin Bootstrap) ===== */
+:root{
+  --bg:#000000;
+  --fg:#c7ffe9;           /* Texto general suave (no blanco) */
+  --green:#059669;        /* Verde base */
+  --green-2:#047857;      /* Verde oscuro (labels) */
+  --mint:#10b981;         /* Verde más claro (tabs activos, valores) */
+  --border:rgba(5,150,105,.3);
 }
 
-/* Texto neon */
-.neon-text {
-    color: #00ff99;
-    text-shadow: 0 0 5px #00ff99, 0 0 10px #00ff99, 0 0 20px #00ff99;
-}
+/* Layout principal del panel */
+.panel-main{position:relative;z-index:1;padding-top:96px;min-height:100vh}
+.panel-wrap{display:flex;flex-direction:column;gap:24px}
 
-.neon-subtext {
-    color: #00ff99;
-    opacity: 0.8;
-}
+/* Header */
+.panel-header{text-align:left;margin-top:8px}
+.panel-title{font-family:Orbitron,system-ui,sans-serif;font-weight:900;letter-spacing:.02em;font-size:clamp(28px,3.6vw,40px);color:var(--green)}
+.panel-subtitle{color:var(--green-2);opacity:.95}
 
-/* Tarjetas estilo neon */
-.card-neon {
-    background-color: #0d0d0d;
-    border: 1px solid #00ff99;
-    border-radius: 15px;
-    box-shadow: 0 0 10px #00ff99;
-    color: #00ff99;
-}
+/* Métricas */
+.metrics{display:grid;grid-template-columns:1fr;gap:16px;margin-top:8px}
+@media (min-width:768px){.metrics{grid-template-columns:repeat(4,1fr)}}
+.metric-card{position:relative;border:1px solid var(--border);border-radius:16px;padding:18px;background:rgba(0,0,0,.8);transition:transform .2s,border-color .2s,color .2s}
+.metric-card:hover{transform:translateY(-2px);border-color:var(--green)}
+.metric-card::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(5,150,105,.2),transparent);filter:blur(24px);z-index:-1;opacity:.8}
+.metric-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.metric-label{color:var(--green-2)}
+.metric-icon{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;background:rgba(5,150,105,.12);color:var(--green);font-weight:700}
+.metric-value{color:var(--mint)}
+.metric-foot{color:var(--green-2)}
 
-.card-inner-neon {
-    border: 1px solid #00ff99;
-    border-radius: 10px;
-    box-shadow: inset 0 0 10px #00ff99;
-    background-color: #0d0d0d;
-}
+/* Tabs */
+.tabs{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap}
+.tab{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--border);border-radius:12px;background:rgba(5,150,105,.06);color:var(--green);cursor:pointer;transition:all .2s}
+.tab:hover{border-color:var(--green)}
+.tab.active{background:var(--mint);border-color:var(--mint);color:#000}
+.tab-icon{width:18px;height:18px;border-radius:6px;display:grid;place-items:center;background:rgba(5,150,105,.12);color:var(--mint);font-weight:700}
 
-/* Títulos y valores dentro de las tarjetas */
-.card h2, .card h5, .card h6 {
-    color: #00ff99;
-}
+/* Paneles */
+.cards{display:grid;grid-template-columns:1fr;gap:16px;margin-top:12px}
+@media (min-width:992px){.cards{grid-template-columns:2fr 1fr}}
+.panel{border:1px solid var(--border);border-radius:16px;padding:18px;background:rgba(0,0,0,.8);color:var(--green-2)}
+.panel.inner{margin-top:10px;border:1px solid var(--border);background:rgba(5,150,105,.06)}
+.panel-title-sm{color:var(--green);margin-bottom:6px}
+.panel-title-xs{color:var(--green)}
+.panel-empty{margin-top:24px;text-align:center;color:var(--green-2)}
 
-/* Texto normal dentro de tarjetas */
-.card p, .card small {
-    color: #00ff99;
-}
-
-/* Tabs estilo neon */
-.nav-pills .nav-link {
-    background-color: #0d0d0d;
-    color: #00ff99;
-    border: 1px solid #00ff99;
-    margin-right: 5px;
-}
-
-.nav-pills .nav-link.active {
-    background-color: #00ff99;
-    color: #0d0d0d;
-}
-
-/* Íconos de tarjetas */
-.icon {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
+/* Header del panel con contador */
+.panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.panel-count{color:var(--green-2);font-size:14px}

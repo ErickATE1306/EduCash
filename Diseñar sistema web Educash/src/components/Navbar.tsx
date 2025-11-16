@@ -1,22 +1,34 @@
 import { motion } from 'motion/react';
-import { Home, BookOpen, Wallet, Settings, User, Menu, X } from 'lucide-react';
+import { Home, BookOpen, Wallet, Settings, User, Menu, X, LogOut, Sparkles } from 'lucide-react';
 import { Button } from './ui/button';
 import { useState } from 'react';
 
 const navItems = [
-  { icon: Home, label: 'Inicio' },
-  { icon: BookOpen, label: 'Cursos' },
-  { icon: Wallet, label: 'Billetera' },
-  { icon: Settings, label: 'Configuración' },
+  { id: 'dashboard', icon: Home, label: 'Inicio' },
+  { id: 'courses', icon: BookOpen, label: 'Cursos' },
+  { id: 'wallet', icon: Wallet, label: 'Billetera' },
+  { id: 'settings', icon: Settings, label: 'Configuración' },
 ];
 
-export function Navbar({ onLogoClick }: { onLogoClick: () => void }) {
+interface NavbarProps {
+  onNavigate: (page: string) => void;
+  currentPage: string;
+  username: string;
+  onLogout: () => void;
+}
+
+export function Navbar({ onNavigate, currentPage, username, onLogout }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleNavClick = (pageId: string) => {
+    onNavigate(pageId as any);
+    setIsOpen(false);
+  };
 
   return (
     <>
       <motion.nav
-        className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-[#059669]/30"
+        className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-[#00ff88]/30"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
@@ -25,53 +37,87 @@ export function Navbar({ onLogoClick }: { onLogoClick: () => void }) {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <motion.button
-              onClick={onLogoClick}
+              onClick={() => handleNavClick('dashboard')}
               className="flex items-center gap-2 cursor-pointer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="w-10 h-10 bg-[#059669] rounded-lg flex items-center justify-center shadow-[0_0_20px_rgba(5,150,105,0.5)]">
+              <div className="w-10 h-10 bg-[#00ff88] rounded-lg flex items-center justify-center shadow-[0_0_20px_rgba(0,255,136,0.5)]">
                 <span className="text-black">$</span>
               </div>
-              <span className="text-xl text-[#059669]">EDUCASH</span>
+              <span className="text-xl text-[#00ff88]">EDUCASH</span>
             </motion.button>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-2">
               {navItems.map((item, index) => (
                 <motion.div
-                  key={item.label}
+                  key={item.id}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
                   <Button
                     variant="ghost"
-                    className="text-[#059669] hover:bg-[#059669]/10 hover:text-[#059669] transition-all duration-300"
+                    className={`transition-all duration-300 ${
+                      currentPage === item.id
+                        ? 'bg-[#00ff88]/20 text-[#00ff88] border border-[#00ff88]/50'
+                        : 'text-[#00cc66] hover:bg-[#00ff88]/10 hover:text-[#00ff88]'
+                    }`}
+                    onClick={() => handleNavClick(item.id)}
                   >
                     <item.icon className="mr-2 h-4 w-4" />
                     {item.label}
                   </Button>
                 </motion.div>
               ))}
+              
+              {/* Demo Button */}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
+                <Button
+                  variant="ghost"
+                  className={`transition-all duration-300 ${
+                    currentPage === 'demo'
+                      ? 'bg-[#00ff88]/20 text-[#00ff88] border border-[#00ff88]/50'
+                      : 'text-[#00cc66] hover:bg-[#00ff88]/10 hover:text-[#00ff88]'
+                  }`}
+                  onClick={() => handleNavClick('demo')}
+                >
+                  <Sparkles className="mr-2 h-4 w-4" />
+                  Demo
+                </Button>
+              </motion.div>
             </div>
 
-            {/* User Profile */}
+            {/* User Profile & Logout */}
             <div className="hidden md:flex items-center gap-4">
               <motion.div
-                className="flex items-center gap-2 px-4 py-2 bg-[#059669]/10 border border-[#059669]/30 rounded-lg hover:border-[#059669] transition-all duration-300 cursor-pointer"
+                className="flex items-center gap-2 px-4 py-2 bg-[#00ff88]/10 border border-[#00ff88]/30 rounded-lg hover:border-[#00ff88] transition-all duration-300 cursor-pointer"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="w-8 h-8 bg-[#059669] rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-[#00ff88] rounded-full flex items-center justify-center">
                   <User className="h-4 w-4 text-black" />
                 </div>
-                <span className="text-[#059669] text-sm">Estudiante</span>
+                <span className="text-[#00ff88] text-sm">{username}</span>
               </motion.div>
+              
+              <motion.button
+                onClick={onLogout}
+                className="p-2 text-[#00ff88] hover:text-[#00cc66] hover:bg-[#00ff88]/10 rounded-lg transition-all duration-300"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <LogOut className="h-5 w-5" />
+              </motion.button>
             </div>
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-[#059669]"
+              className="md:hidden text-[#00ff88]"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <X /> : <Menu />}
@@ -92,32 +138,68 @@ export function Navbar({ onLogoClick }: { onLogoClick: () => void }) {
             <div className="flex flex-col gap-4">
               {navItems.map((item, index) => (
                 <motion.button
-                  key={item.label}
-                  className="flex items-center gap-4 p-4 bg-[#059669]/10 border border-[#059669]/30 rounded-lg text-[#059669] hover:border-[#059669] transition-all duration-300"
+                  key={item.id}
+                  className={`flex items-center gap-4 p-4 rounded-lg transition-all duration-300 ${
+                    currentPage === item.id
+                      ? 'bg-[#00ff88]/20 border-2 border-[#00ff88] text-[#00ff88]'
+                      : 'bg-[#00ff88]/10 border-2 border-[#00ff88]/30 text-[#00cc66] hover:border-[#00ff88]'
+                  }`}
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => handleNavClick(item.id)}
                 >
                   <item.icon className="h-5 w-5" />
                   <span>{item.label}</span>
                 </motion.button>
               ))}
               
-              <motion.div
-                className="flex items-center gap-4 p-4 bg-[#059669]/10 border border-[#059669]/30 rounded-lg"
+              {/* Demo Button Mobile */}
+              <motion.button
+                className={`flex items-center gap-4 p-4 rounded-lg transition-all duration-300 ${
+                  currentPage === 'demo'
+                    ? 'bg-[#00ff88]/20 border-2 border-[#00ff88] text-[#00ff88]'
+                    : 'bg-[#00ff88]/10 border-2 border-[#00ff88]/30 text-[#00cc66] hover:border-[#00ff88]'
+                }`}
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
+                onClick={() => handleNavClick('demo')}
               >
-                <div className="w-10 h-10 bg-[#059669] rounded-full flex items-center justify-center">
+                <Sparkles className="h-5 w-5" />
+                <span>Demo</span>
+              </motion.button>
+              
+              {/* User Profile Mobile */}
+              <motion.div
+                className="flex items-center gap-4 p-4 bg-[#00ff88]/10 border-2 border-[#00ff88]/30 rounded-lg"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                <div className="w-10 h-10 bg-[#00ff88] rounded-full flex items-center justify-center">
                   <User className="h-5 w-5 text-black" />
                 </div>
-                <div>
-                  <p className="text-[#059669]">Estudiante</p>
-                  <p className="text-[#047857] text-sm">Ver perfil</p>
+                <div className="flex-1">
+                  <p className="text-[#00ff88]">{username}</p>
+                  <p className="text-[#00cc66] text-sm">Ver perfil</p>
                 </div>
               </motion.div>
+              
+              {/* Logout Button Mobile */}
+              <motion.button
+                className="flex items-center gap-4 p-4 bg-red-500/10 border-2 border-red-500/30 rounded-lg text-red-500 hover:border-red-500 transition-all duration-300"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6 }}
+                onClick={() => {
+                  setIsOpen(false);
+                  onLogout();
+                }}
+              >
+                <LogOut className="h-5 w-5" />
+                <span>Cerrar Sesión</span>
+              </motion.button>
             </div>
           </div>
         </motion.div>

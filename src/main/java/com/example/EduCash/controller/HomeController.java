@@ -15,4 +15,24 @@ public class HomeController {
     public String coAhoraString() {
         return "comenzarAhora"; // Renderiza templates/comenzarAhora.html
     }
+
+    @GetMapping("/cursos")
+    public String cursos() {
+        return "cursos";
+    }
+
+    @GetMapping("/billetera")
+    public String billetera() {
+        return "billetera";
+    }
+
+    @GetMapping("/configuracion")
+    public String configuracion() {
+        return "configuracion";
+    }
+
+    @GetMapping("/demo")
+    public String demo() {
+        return "demo";
+    }
 }

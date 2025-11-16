@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/_head :: head('Ingresar — EDUCASH', '/css/auth.css')}"></head>
+  <body>
+    <canvas id="matrix-canvas" class="matrix-canvas" aria-hidden="true"></canvas>
+
+    <main class="auth-main">
+      <section class="auth-layout container" id="authLayout">
+        <!-- Vitrina de tarjetas flotantes (decorativo) -->
+        <div class="auth-showcase" aria-hidden="true">
+          <!-- Saldo Total -->
+          <article class="float-card balance" role="img" aria-label="Saldo Total $1,234.56">
+            <div class="fc-row">
+              <div class="fc-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor"/>
+                  <path d="M12 6v12M8.5 9.5h4a2.5 2.5 0 1 1 0 5h-1.5" stroke="currentColor" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="fc-meta">
+                <span class="fc-label">Saldo Total</span>
+                <span class="fc-value">$1,234.56</span>
+              </div>
+            </div>
+            <div class="fc-foot">*** *** *** 4321</div>
+          </article>
+
+          <!-- Ahorro del Mes -->
+          <article class="float-card savings" role="img" aria-label="Ahorro del Mes +$345.00">
+            <div class="fc-row">
+              <div class="fc-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 16l5-5 3 3 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M20 8v6h-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="fc-meta">
+                <span class="fc-label">Ahorro del Mes</span>
+                <span class="fc-value">+$345.00</span>
+              </div>
+            </div>
+            <div class="fc-foot">Noviembre 2025</div>
+          </article>
+
+          <!-- Consejo IA -->
+          <article class="float-card ai-tip" role="img" aria-label="Consejo IA: Ahorra 15% más">
+            <div class="fc-row">
+              <div class="fc-badge">AI</div>
+              <div class="fc-meta">
+                <span class="fc-label">Consejo IA</span>
+                <span class="fc-value small">Ahorra 15% más</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Tarjeta de login -->
+        <div class="auth-card">
+          <a class="auth-logo" href="/" aria-label="Ir a inicio">
+            <div class="neon-square">
+              <span class="neon-symbol">$</span>
+            </div>
+          </a>
+
+          <h1 class="auth-title">Bienvenido</h1>
+          <p class="auth-subtitle">Inicia sesión en tu asistente financiero</p>
+
+          <form class="auth-form" method="post" action="/login" autocomplete="off" novalidate>
+            <label class="auth-label" for="email">Nombre de Usuario</label>
+            <div class="input-group">
+              <div class="ig-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor"/>
+                  <path d="M20 21a8 8 0 1 0-16 0" stroke="currentColor" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <input class="auth-input" id="email" name="email" type="text" placeholder="tu_nombre" required />
+            </div>
+
+            <label class="auth-label" for="password">Contraseña</label>
+            <div class="input-group">
+              <div class="ig-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="4" y="10" width="16" height="10" rx="2" stroke="currentColor"/>
+                  <path d="M8 10V8a4 4 0 1 1 8 0v2" stroke="currentColor"/>
+                </svg>
+              </div>
+              <input class="auth-input" id="password" name="password" type="password" placeholder="••••••••" required />
+              <button class="icon-btn chip" type="button" id="togglePwd" aria-label="Mostrar contraseña">
+                <svg class="eye on" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z" stroke="currentColor"/>
+                  <circle cx="12" cy="12" r="3" stroke="currentColor"/>
+                </svg>
+                <svg class="eye off" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 3l18 18" stroke="currentColor"/>
+                  <path d="M2 12s4-7 10-7a9.6 9.6 0 0 1 6 2" stroke="currentColor"/>
+                  <path d="M22 12s-4 7-10 7a9.6 9.6 0 0 1-6-2" stroke="currentColor"/>
+                </svg>
+              </button>
+            </div>
+
+            <div class="auth-meta">
+              <label class="auth-check"><input id="remember" type="checkbox" /> Recuérdame</label>
+              <a class="auth-link" href="#">¿Olvidaste tu contraseña?</a>
+            </div>
+
+            <button class="btn btn-primary w-full" type="submit">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Iniciar Sesión
+            </button>
+          </form>
+
+          <p class="auth-note">¿No tienes cuenta? <button type="button" class="auth-link" id="showRegister">Regístrate</button></p>
+
+          <!-- Formulario de Registro (toggle) -->
+          <div class="register-box" id="registerBox" hidden>
+            <h2 class="reg-title">Crear Cuenta</h2>
+            <form class="reg-form" id="regForm" method="post" action="/login" autocomplete="off" novalidate>
+              <label class="auth-label" for="regName">Nombre</label>
+              <input class="auth-input" id="regName" name="name" type="text" placeholder="Tu nombre" required />
+
+              <label class="auth-label" for="regEmail">Correo</label>
+              <input class="auth-input" id="regEmail" name="email" type="email" placeholder="tu@correo.com" required />
+
+              <label class="auth-label" for="regPass">Contraseña</label>
+              <input class="auth-input" id="regPass" name="password" type="password" placeholder="••••••••" required />
+
+              <label class="auth-label" for="regPass2">Confirmar Contraseña</label>
+              <input class="auth-input" id="regPass2" name="password2" type="password" placeholder="Repite contraseña" required />
+
+              <div class="reg-meta">
+                <label class="auth-check"><input id="regTerms" type="checkbox" required /> Acepto términos</label>
+              </div>
+              <button class="btn btn-primary w-full" type="submit">Registrarme</button>
+              <button type="button" class="btn btn-secondary w-full" id="cancelRegister">Cancelar</button>
+            </form>
+          </div>
+
+          <hr class="auth-sep" />
+          <p class="auth-hint">O prueba la versión demo</p>
+          <a class="btn btn-secondary" href="/demo">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" stroke-linecap="round"/>
+            </svg>
+            Acceso Demo
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <script src="/js/inicio.js" defer></script>
+    <script src="/js/auth.js" defer></script>
+  </body>
+  </html>

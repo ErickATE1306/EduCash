@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/_head :: head('Billetera — EDUCASH', '/css/coAhora.css')}"></head>
+  <body>
+    <canvas id="matrix-canvas" class="matrix-canvas" aria-hidden="true"></canvas>
+    <th:block th:replace="~{fragments/_navbar :: navbar('billetera')}"></th:block>
+
+    <main class="panel-main">
+      <div class="container panel-wrap">
+        <header class="panel-header">
+          <h1 class="panel-title">Billetera</h1>
+          <p class="panel-subtitle">Gestiona tus ingresos y gastos</p>
+        </header>
+
+        <section class="metrics">
+          <article class="metric-card"><div class="metric-top"><p class="metric-label">Balance</p><span class="metric-icon">$</span></div><h2 class="metric-value">$0.00</h2><small class="metric-foot">Hoy</small></article>
+          <article class="metric-card"><div class="metric-top"><p class="metric-label">Ingresos</p><span class="metric-icon">↑</span></div><h2 class="metric-value">$0.00</h2><small class="metric-foot">Mensual</small></article>
+          <article class="metric-card"><div class="metric-top"><p class="metric-label">Gastos</p><span class="metric-icon">↓</span></div><h2 class="metric-value">$0.00</h2><small class="metric-foot">Mensual</small></article>
+          <article class="metric-card"><div class="metric-top"><p class="metric-label">Ahorro</p><span class="metric-icon">💰</span></div><h2 class="metric-value">0%</h2><small class="metric-foot">Objetivo</small></article>
+        </section>
+
+        <section class="cards">
+          <article class="panel">
+            <div class="panel-head"><h3 class="panel-title-sm">Transacciones</h3><span class="panel-count">0 transacciones</span></div>
+            <p class="panel-empty">No hay transacciones. Crea una nueva para comenzar.</p>
+          </article>
+          <aside class="panel">
+            <h3 class="panel-title-sm">Acciones rápidas</h3>
+            <div class="panel inner">
+              <p><a class="btn btn-primary" href="/coAhora">Nueva transacción</a></p>
+            </div>
+          </aside>
+        </section>
+      </div>
+    </main>
+
+    <script src="/js/inicio.js" defer></script>
+  </body>
+  </html>

@@ -1,99 +1,123 @@
 <!DOCTYPE html>
 <html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>EDUCASH — Panel</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+        <!-- Reutilizamos estilos base (navbar, fondo, tokens) -->
+        <link rel="stylesheet" href="/css/inicio.css" />
+        <!-- Estilos propios del panel -->
+        <link rel="stylesheet" href="/css/coAhora.css" />
+    </head>
+    <body>
+        <!-- Fondo Matrix -->
+        <canvas id="matrix-canvas" class="matrix-canvas" aria-hidden="true"></canvas>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Panel Financiero</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/coAhora.css">
-</head>
+        <!-- Navbar (igual a inicio) -->
+        <nav class="navbar">
+            <div class="container nav-inner">
+                <a class="logo" href="/" aria-label="Ir a inicio">
+                    <div class="logo-box"><span>$</span></div>
+                    <span class="logo-text">EDUCASH</span>
+                </a>
 
-<body class="bg-dark">
-
-    <div class="container py-4">
-
-        <div class="mb-4">
-            <h1 class="fw-bold neon-text">Mi Panel Financiero</h1>
-            <p class="neon-subtext">Gestiona tus finanzas como un estudiante inteligente 🎓</p>
-        </div>
-
-        <div class="row g-3 mb-4">
-            <div class="col-md-3">
-                <div class="card card-neon p-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <p class="mb-1">Balance Total</p>
-                        <span class="icon">$</span>
-                    </div>
-                    <h2>$0.00</h2>
-                    <small>0.0%</small>
+                <div class="nav-links" aria-label="Navegación">
+                    <a href="/inicio" class="nav-btn">Inicio</a>
+                    <a href="/cursos" class="nav-btn">Cursos</a>
+                    <a href="/billetera" class="nav-btn">Billetera</a>
+                    <a href="/configuracion" class="nav-btn">Configuración</a>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-neon p-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <p class="mb-1">Ingresos</p>
-                        <span class="icon">↑</span>
-                    </div>
-                    <h2>$0.00</h2>
-                    <small>0 registros</small>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-neon p-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <p class="mb-1">Gastos</p>
-                        <span class="icon">↓</span>
-                    </div>
-                    <h2>$0.00</h2>
-                    <small>0 registros</small>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-neon p-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <p class="mb-1">Tasa de Ahorro</p>
-                        <span class="icon">💰</span>
-                    </div>
-                    <h2>0.0%</h2>
-                    <small>Mejorar</small>
-                </div>
-            </div>
-        </div>
 
-        <ul class="nav nav-pills mb-3 neon-tabs">
-            <li class="nav-item">
-                <button class="nav-link active">Vista General</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link">Nueva Transacción</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link">Análisis IA</button>
-            </li>
-        </ul>
-
-        <div class="row g-3">
-            <div class="col-lg-8">
-                <div class="card card-neon p-3">
-                    <h5>Historial de Transacciones</h5>
-                    <p class="text-center mt-4">No hay transacciones registradas<br>Comienza agregando tu primera transacción</p>
+                <div class="nav-profile">
+                    <div class="avatar" aria-hidden="true">U</div>
+                    <span class="role">Estudiante</span>
                 </div>
+
+                <button id="menuToggle" class="nav-toggle" aria-label="Abrir menú">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
-            <div class="col-lg-4">
-                <div class="card card-neon p-3">
-                    <h5>Asistente Financiero IA</h5>
-                    <p>Análisis inteligente de tus finanzas</p>
-                    <div class="card card-inner-neon p-2 mt-2">
-                        <h6>Comienza a registrar</h6>
-                        <p>Agrega tus primeras transacciones para recibir consejos personalizados sobre tus finanzas.</p>
-                    </div>
+        </nav>
+
+        <!-- Contenido Panel -->
+        <main class="panel-main">
+            <div class="container panel-wrap">
+                <header class="panel-header">
+                    <h1 class="panel-title">Mi Panel Financiero</h1>
+                    <p class="panel-subtitle">Gestiona tus finanzas como un estudiante inteligente 🎓</p>
+                </header>
+
+                <!-- Métricas -->
+                <section class="metrics" aria-label="Métricas">
+                    <article class="metric-card">
+                        <div class="metric-top">
+                            <p class="metric-label">Balance Total</p>
+                            <span class="metric-icon">$</span>
+                        </div>
+                        <h2 class="metric-value">$0.00</h2>
+                        <small class="metric-foot">0.0%</small>
+                    </article>
+
+                    <article class="metric-card">
+                        <div class="metric-top">
+                            <p class="metric-label">Ingresos</p>
+                            <span class="metric-icon">↑</span>
+                        </div>
+                        <h2 class="metric-value">$0.00</h2>
+                        <small class="metric-foot">0 registros</small>
+                    </article>
+
+                    <article class="metric-card">
+                        <div class="metric-top">
+                            <p class="metric-label">Gastos</p>
+                            <span class="metric-icon">↓</span>
+                        </div>
+                        <h2 class="metric-value">$0.00</h2>
+                        <small class="metric-foot">0 registros</small>
+                    </article>
+
+                    <article class="metric-card">
+                        <div class="metric-top">
+                            <p class="metric-label">Tasa de Ahorro</p>
+                            <span class="metric-icon">💰</span>
+                        </div>
+                        <h2 class="metric-value">0.0%</h2>
+                        <small class="metric-foot">Mejorar</small>
+                    </article>
+                </section>
+
+                <!-- Tabs simples -->
+                <div class="tabs" role="tablist">
+                    <button class="tab active" role="tab" aria-selected="true"><span class="tab-icon">🏠</span>Vista General</button>
+                    <button class="tab" role="tab" aria-selected="false"><span class="tab-icon">＋</span>Nueva Transacción</button>
+                    <button class="tab" role="tab" aria-selected="false"><span class="tab-icon">📈</span>Análisis IA</button>
                 </div>
+
+                <section class="cards">
+                    <article class="panel">
+                        <div class="panel-head">
+                            <h3 class="panel-title-sm">Historial de Transacciones</h3>
+                            <span class="panel-count"><span id="txCount">0</span> transacciones</span>
+                        </div>
+                        <p class="panel-empty">No hay transacciones registradas<br/>Comienza agregando tu primera transacción</p>
+                    </article>
+
+                    <aside class="panel">
+                        <h3 class="panel-title-sm">Asistente Financiero IA</h3>
+                        <p>Análisis inteligente de tus finanzas</p>
+                        <div class="panel inner">
+                            <h4 class="panel-title-xs">Comienza a registrar</h4>
+                            <p>Agrega tus primeras transacciones para recibir consejos personalizados sobre tus finanzas.</p>
+                        </div>
+                    </aside>
+                </section>
             </div>
-        </div>
+        </main>
 
-    </div>
-
-</body>
-
-</html>
+        <!-- Reutilizamos el JS de inicio (matrix + menú) -->
+        <script src="/js/inicio.js" defer></script>
+    </body>
+    </html>

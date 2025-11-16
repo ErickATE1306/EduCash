@@ -65,12 +65,12 @@
   logo.addEventListener('click', ()=>{ window.scrollTo({ top:0, behavior:'smooth' }); });
 })();
 
-// Force redirect for "Comenzar Ahora"
+// Force redirect for "Comenzar Ahora" (flujo: ir a /login)
 (function(){
   const go = document.getElementById('getStarted');
   if(!go) return;
   go.addEventListener('click', (e)=>{
     e.preventDefault();
-    window.location.assign('/coAhora');
+    window.location.assign('/login');
   });
 })();

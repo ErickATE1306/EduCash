@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<th:block th:fragment="navbar(active)">
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a class="logo" href="/" aria-label="Ir a inicio">
+        <div class="logo-box"><span>$</span></div>
+        <span class="logo-text">EDUCASH</span>
+      </a>
+
+      <div class="nav-links" aria-label="Navegación">
+        <a th:classappend="${active}=='inicio' ? ' nav-btn active' : ' nav-btn'" href="/inicio">Inicio</a>
+        <a th:classappend="${active}=='cursos' ? ' nav-btn active' : ' nav-btn'" href="/cursos">Cursos</a>
+        <a th:classappend="${active}=='billetera' ? ' nav-btn active' : ' nav-btn'" href="/billetera">Billetera</a>
+        <a th:classappend="${active}=='config' ? ' nav-btn active' : ' nav-btn'" href="/configuracion">Configuración</a>
+      </div>
+
+      <div class="nav-profile">
+        <div class="avatar" aria-hidden="true">U</div>
+        <span class="role">Estudiante</span>
+      </div>
+
+      <button id="menuToggle" class="nav-toggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</th:block>

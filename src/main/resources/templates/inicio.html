@@ -1,51 +1,16 @@
 <!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EDUCASH — Inicio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/inicio.css" />
-  </head>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/_head :: head('EDUCASH — Inicio', null)}"></head>
   <body>
     <!-- Fondo Matrix -->
     <canvas id="matrix-canvas" class="matrix-canvas" aria-hidden="true"></canvas>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-      <div class="container nav-inner">
-        <button class="logo" id="logoBtn" aria-label="Ir a inicio">
-          <div class="logo-box"><span>$</span></div>
-          <span class="logo-text">EDUCASH</span>
-        </button>
-
-        <div class="nav-links" aria-label="Navegación">
-          <a href="#inicio" class="nav-btn">Inicio</a>
-          <a href="#cursos" class="nav-btn">Cursos</a>
-          <a href="#billetera" class="nav-btn">Billetera</a>
-          <a href="#configuracion" class="nav-btn">Configuración</a>
-        </div>
-
-        <div class="nav-profile">
-          <div class="avatar" aria-hidden="true">U</div>
-          <span class="role">Estudiante</span>
-        </div>
-
-        <button id="menuToggle" class="nav-toggle" aria-label="Abrir menú">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </nav>
+    <!-- Landing sin navbar (según Figma) -->
 
     <!-- Menú móvil -->
     <div id="mobileMenu" class="mobile-menu" hidden>
       <div class="container mobile-menu-inner">
-        <a href="#inicio" class="mobile-item">Inicio</a>
-        <a href="#cursos" class="mobile-item">Cursos</a>
-        <a href="#billetera" class="mobile-item">Billetera</a>
-        <a href="#configuracion" class="mobile-item">Configuración</a>
+        <!-- Menú móvil no se usa en landing; se deja vacío a propósito -->
         <div class="mobile-profile">
           <div class="avatar">U</div>
           <div>
@@ -67,8 +32,8 @@
           analiza y optimiza tus finanzas con IA.
         </p>
         <div class="cta">
-          <a href="/coAhora" id="getStarted" class="btn btn-primary" onclick="window.location.href='/coAhora'; return false;">Comenzar Ahora</a>
-          <a href="#demo" class="btn btn-outline">Ver Demo</a>
+          <a href="/login" id="getStarted" class="btn btn-primary" onclick="window.location.href='/login'; return false;">Comenzar Ahora</a>
+          <a href="/demo" class="btn btn-outline">Ver Demo</a>
         </div>
 
         <section class="features" aria-label="Características">

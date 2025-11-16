@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/_head :: head('Demo — EDUCASH', '/css/pages.css')}"></head>
+  <body>
+    <canvas id="matrix-canvas" class="matrix-canvas" aria-hidden="true"></canvas>
+    <th:block th:replace="~{fragments/_navbar :: navbar('demo')}"></th:block>
+
+    <main class="panel-main">
+      <div class="container panel-wrap">
+        <header class="panel-header">
+          <h1 class="panel-title">Demo</h1>
+          <p class="panel-subtitle">Vista previa de funcionalidades</p>
+        </header>
+
+        <section class="cards">
+          <article class="panel">
+            <h3 class="panel-title-sm">Cómo funciona EDUCash</h3>
+            <p>Registra, analiza y optimiza tus finanzas con IA. Esta demo muestra interacciones y pantallas principales.</p>
+          </article>
+        </section>
+      </div>
+    </main>
+
+    <script src="/js/inicio.js" defer></script>
+  </body>
+  </html>
