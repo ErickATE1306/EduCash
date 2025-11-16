@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EDUCASH — Inicio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/inicio.css" />
+  </head>
+  <body>
+    <!-- Fondo Matrix -->
+    <canvas id="matrix-canvas" class="matrix-canvas" aria-hidden="true"></canvas>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="container nav-inner">
+        <button class="logo" id="logoBtn" aria-label="Ir a inicio">
+          <div class="logo-box"><span>$</span></div>
+          <span class="logo-text">EDUCASH</span>
+        </button>
+
+        <div class="nav-links" aria-label="Navegación">
+          <a href="#inicio" class="nav-btn">Inicio</a>
+          <a href="#cursos" class="nav-btn">Cursos</a>
+          <a href="#billetera" class="nav-btn">Billetera</a>
+          <a href="#configuracion" class="nav-btn">Configuración</a>
+        </div>
+
+        <div class="nav-profile">
+          <div class="avatar" aria-hidden="true">U</div>
+          <span class="role">Estudiante</span>
+        </div>
+
+        <button id="menuToggle" class="nav-toggle" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Menú móvil -->
+    <div id="mobileMenu" class="mobile-menu" hidden>
+      <div class="container mobile-menu-inner">
+        <a href="#inicio" class="mobile-item">Inicio</a>
+        <a href="#cursos" class="mobile-item">Cursos</a>
+        <a href="#billetera" class="mobile-item">Billetera</a>
+        <a href="#configuracion" class="mobile-item">Configuración</a>
+        <div class="mobile-profile">
+          <div class="avatar">U</div>
+          <div>
+            <p class="role">Estudiante</p>
+            <p class="view-profile">Ver perfil</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenido principal: Hero -->
+    <main class="main" id="inicio">
+      <div class="container hero">
+        <h1 class="title">
+          <span class="title-edu">EDU</span><span class="title-cash">CASH</span>
+        </h1>
+        <p class="subtitle">
+          Tu asistente financiero inteligente para estudiantes universitarios. Registra,
+          analiza y optimiza tus finanzas con IA.
+        </p>
+        <div class="cta">
+          <a href="/coAhora" id="getStarted" class="btn btn-primary" onclick="window.location.href='/coAhora'; return false;">Comenzar Ahora</a>
+          <a href="#demo" class="btn btn-outline">Ver Demo</a>
+        </div>
+
+        <section class="features" aria-label="Características">
+          <article class="feature">
+            <div class="feature-icon">💼</div>
+            <h3 class="feature-title">Registro Fácil</h3>
+            <p class="feature-desc">Registra ingresos y gastos en segundos</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">📈</div>
+            <h3 class="feature-title">Análisis IA</h3>
+            <p class="feature-desc">Consejos personalizados según tus patrones</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">🛡️</div>
+            <h3 class="feature-title">Para Estudiantes</h3>
+            <p class="feature-desc">Diseñado específicamente para universitarios</p>
+          </article>
+        </section>
+      </div>
+
+      <!-- Botón asistente flotante -->
+      <button class="ai-fab" id="aiFab" aria-label="Abrir asistente">
+        <span class="ai-glow" aria-hidden="true"></span>
+        🤖
+      </button>
+    </main>
+
+    <script src="/js/inicio.js" defer></script>
+  </body>
+  </html>
